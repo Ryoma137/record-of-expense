@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense</title>
+    <link th:href="@{/expense.css}" rel="stylesheet">
+</head>
+<div class="title-container">
+    <h1>支出</h1>
+</div>
+
+
+<div class="ul-align-center">cd
+    <ul>
+        <li><span>名前</span>
+            <span><input type="text" class="txt" name="name" required minlength="1" maxlength="50" size="20"/></span></li>
+        <li><span>金額</span>
+            <span><input type="number" class="txt" name="amount" required size="50"/></span></li>
+        <li><span>カテゴリー</span>
+            <span><select name="categories" class="txt" id="category-select">
+                    <option value="food">Food</option>
+                    <option value="transportation">Transportation Fees</option>
+                    <option value="medical">Medical Fees</option>
+                </select></span>
+            <!--                <span><input type="text" class="txt" name="category" required minlength="1" maxlength="128" size="50"/></span>-->
+        </li>
+        <li><span>コメント</span>
+            <span><textarea name="comments" class="tarea" cols="50" rows="5"></textarea></span></li>
+    </ul>
+</div>
+
+<!--    <div class="inputContainer">-->
+<!--        <h3>名前</h3>-->
+<!--        <input class="inputForm" type="text" id="name" name="name" required minlength="1" maxlength="128" size="50">-->
+<!--    </div>-->
+<!--    <div class="inputContainer">-->
+<!--        <h3>金額</h3>-->
+<!--        <input class="inputForm" type="number" id="amount" name="amount" required minlength="1" maxlength="10" size="50">-->
+<!--    </div>-->
+<!--    <div class="inputContainer">-->
+<!--        <h3>カテゴリー</h3>-->
+<!--        <input class="inputForm" type="text" id="category" name="category" required maxlength="128" size="50">-->
+<!--    </div>-->
+<!--    <div class="inputContainer">-->
+<!--        <h3>コメント</h3>-->
+<!--        <input class="inputForm" type="text" id="comments" name="comments" required maxlength="512" size="50">-->
+<!--    </div>-->
+
+<!--    <span th:text="${totalAmount}"></span>円-->
+
+<div class="btnContainer">
+    <form th:action="@{/categoryList}" method="post">
+        <button class="addCategoriesBtn btn-color-radius">カテゴリー追加</button>
+    </form>
+    <button class="calculateBtn btn-color-radius">計算</button>
+</div>
+
+</body>
+</html>
+

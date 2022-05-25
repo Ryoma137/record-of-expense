@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.settingBtn{
+     position: absolute;
+       padding-right:100px 0;
+     right: 0;
+}
+
+
+.totalAmount{
+    text-align:center;
+    padding:20px 0;
+}
+
+.btnContainer {
+  padding:20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.incomeBtn{
+    margin-right: 25px;
+}
+
+.incomeBtn:hover{
+  color: #fff;
+  background: #f56500;
+}
+
+
+.btn-color-radius{
+  border-radius: 50%;
+  line-height: 100px;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+
+

@@ -8,11 +8,10 @@ import javax.persistence.*;
 @Entity
 @Data
 @AllArgsConstructor
-@Table(name = "amount")
 public class Amount {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String name;

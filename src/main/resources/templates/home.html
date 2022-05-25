@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link th:href="@{/home.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>A record-of-expenses App</h1>
+    <button class="settingBtn">設定</button>
+</div>
+
+<div class = "totalAmount">Current time is <span th:text="${time}"></span></div>
+<div class="btnContainer">
+    <form th:action="@{/income}" method="post">
+        <button class="incomeBtn btn-color-radius" >収入</button>
+    </form>
+    <form th:action ="@{/expense}" method="post">
+        <button class="expenseBtn btn-color-radius">支出</button>
+    </form>
+</div>
+<!--    <span th:text="${totalAmount}"></span>円-->
+
+<form th:action="@{/history}" method="post">
+    <button>履歴</button>
+</form>
+</body>
+</html>
