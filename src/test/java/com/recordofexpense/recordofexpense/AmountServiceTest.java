@@ -9,6 +9,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -20,11 +21,10 @@ class AmountServiceTest {
 
     @Test
     @DisplayName("Test get all amount")
-
-    void getAmount() {
+    void testFindAll() {
         List<Amount> actual = amountService.getAmount();
         assertNotNull(actual, "Amount should not null");
-        // assertEquals(actual.size() == 1, actual);
+        assertEquals(3,actual.size());
 
     }
 }
