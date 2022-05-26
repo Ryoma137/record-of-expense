@@ -1,6 +1,5 @@
 package com.recordofexpense.recordofexpense.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -10,8 +9,9 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-@AllArgsConstructor
 public class Amount {
+
+    public  Amount(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
