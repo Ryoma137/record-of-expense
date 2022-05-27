@@ -15,7 +15,7 @@ public class IncomeController {
 
     private final AmountRepository amountRepository;
 
-    @GetMapping("/amount")
+    @GetMapping("/amount/list")
     public List<Amount> getAmount(){
         return StreamSupport.stream(amountRepository.findAll().spliterator(),false).toList();
     }
