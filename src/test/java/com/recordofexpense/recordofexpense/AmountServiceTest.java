@@ -38,11 +38,11 @@ class AmountServiceTest {
         assertEquals("Clothes", actual.get(1).getCategory());
         assertEquals("Uniqlo T-Shirt", actual.get(1).getComments());
 
-        assertEquals(3,actual.get(2).getId());
-        assertEquals("iPhone",actual.get(2).getName());
-        assertEquals(130000,actual.get(2).getPrice());
-        assertEquals("Gadget",actual.get(2).getCategory());
-        assertEquals("iPhone 13 Pro",actual.get(2).getComments());
+        assertEquals(3, actual.get(2).getId());
+        assertEquals("iPhone", actual.get(2).getName());
+        assertEquals(130000, actual.get(2).getPrice());
+        assertEquals("Gadget", actual.get(2).getCategory());
+        assertEquals("iPhone 13 Pro", actual.get(2).getComments());
 
     }
 }
