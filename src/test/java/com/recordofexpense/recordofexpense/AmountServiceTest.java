@@ -24,7 +24,25 @@ class AmountServiceTest {
     void testFindAll() {
         List<Amount> actual = amountService.getAmount();
         assertNotNull(actual, "Amount should not null");
-        assertEquals(3,actual.size());
+        assertEquals(3, actual.size());
+
+        assertEquals(1, actual.get(0).getId());
+        assertEquals("Sandwich", actual.get(0).getName());
+        assertEquals(450, actual.get(0).getPrice());
+        assertEquals("Food", actual.get(0).getCategory());
+        assertEquals("What a scrumptious sandwich", actual.get(0).getComments());
+
+        assertEquals(2, actual.get(1).getId());
+        assertEquals("White T-Shirt", actual.get(1).getName());
+        assertEquals(980, actual.get(1).getPrice());
+        assertEquals("Clothes", actual.get(1).getCategory());
+        assertEquals("Uniqlo T-Shirt", actual.get(1).getComments());
+
+        assertEquals(3,actual.get(2).getId());
+        assertEquals("iPhone",actual.get(2).getName());
+        assertEquals(130000,actual.get(2).getPrice());
+        assertEquals("Gadget",actual.get(2).getCategory());
+        assertEquals("iPhone 13 Pro",actual.get(2).getComments());
 
     }
 }
