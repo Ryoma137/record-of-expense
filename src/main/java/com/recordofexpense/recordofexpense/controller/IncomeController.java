@@ -22,6 +22,11 @@ public class IncomeController {
         return StreamSupport.stream(amountRepository.findAll().spliterator(), false).toList();
     }
 
+    @GetMapping("/amount/category")
+    public List<String> getCategory(){
+        return StreamSupport.stream(amountRepository.getCategoryList().spliterator(),false).toList();
+    }
+
 
 
 }
