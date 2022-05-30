@@ -2,6 +2,7 @@ package com.recordofexpense.recordofexpense;
 
 import com.recordofexpense.recordofexpense.entity.Amount;
 import com.recordofexpense.recordofexpense.repository.AmountRepository;
+import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,8 @@ public class AmountService {
         return amountRepository.findAll();
     }
 
-    public Amount getAmountByCategory(String category) {
-        return amountRepository.getCategoryList(category);
+    public List<String> getAmountByCategory() {
+        return amountRepository.getCategoryList();
     }
 
 }

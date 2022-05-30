@@ -3,6 +3,7 @@ package com.recordofexpense.recordofexpense.controller;
 import com.recordofexpense.recordofexpense.entity.Amount;
 import com.recordofexpense.recordofexpense.repository.AmountRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,11 +14,14 @@ import java.util.stream.StreamSupport;
 @RestController
 public class IncomeController {
 
+    @Autowired
     private final AmountRepository amountRepository;
 
     @GetMapping("/amount/list")
-    public List<Amount> getAmount(){
-        return StreamSupport.stream(amountRepository.findAll().spliterator(),false).toList();
+    public List<Amount> getAmount() {
+        return StreamSupport.stream(amountRepository.findAll().spliterator(), false).toList();
     }
+
+
 
 }

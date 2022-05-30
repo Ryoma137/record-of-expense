@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +20,7 @@ class AmountServiceTest {
     private AmountService amountService;
 
     @Test
-    @DisplayName("Test get all amount")
+    @DisplayName("Test find all")
     void testFindAll() {
         List<Amount> actual = amountService.getAmount();
         assertNotNull(actual, "Amount should not null");
@@ -45,17 +43,15 @@ class AmountServiceTest {
         assertEquals(130000, actual.get(2).getPrice());
         assertEquals("Gadget", actual.get(2).getCategory());
         assertEquals("iPhone 13 Pro", actual.get(2).getComments());
-
     }
 
     @Test
     @DisplayName("Test get category")
-    void getCategory(String category) {
-        String[] categoryList = new String[]{String.valueOf(amountService.getAmountByCategory(category))};
-        List<Amount> actual = new ArrayList(Arrays.asList(categoryList));
-        assertEquals("Food", actual.get(0).getCategory());
+    void testGetCategory() {
 
-        //List<Amount> actual = amountService.getAmountByCategory(category);
-        //assertEquals("Food", actual.get(0).getCategory());
+        List<String> actual = amountService.getAmountByCategory();
+        assertEquals("Food", actual.get(0));
+        assertEquals("Clothes", actual.get(1));
+        assertEquals("Gadget", actual.get(2));
     }
 }

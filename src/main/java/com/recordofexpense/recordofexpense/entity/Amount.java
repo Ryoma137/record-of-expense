@@ -24,5 +24,4 @@ public class Amount {
     private String category;
 
     private String comments;
-
 }
