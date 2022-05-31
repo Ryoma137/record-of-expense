@@ -17,36 +17,22 @@
         <li><span>金額</span>
             <span><input type="number" class="txt" name="amount" required size="50"/></span></li>
         <li><span>カテゴリー</span>
-            <span><select name="categories" class="txt" id="category-select">
-                    <option value="food">Food</option>
-                    <option value="transportation">Transportation Fees</option>
-                    <option value="medical">Medical Fees</option>
-                </select></span>
+<!--            <span><select name="categories" class="txt" id="category-select">-->
+<!--                    <option value="food">Food</option>-->
+<!--                    <option value="transportation">Transportation Fees</option>-->
+<!--                    <option value="medical">Medical Fees</option>-->
+<!--                </select></span>-->
+
             <!--                <span><input type="text" class="txt" name="category" required minlength="1" maxlength="128" size="50"/></span>-->
+            <span><option th:each="categoryList: ${categoryLists}}"></span>
+
+
         </li>
         <li><span>コメント</span>
             <span><textarea name="comments" class="tarea" cols="50" rows="5"></textarea></span></li>
     </ul>
 </div>
 
-<!--    <div class="inputContainer">-->
-<!--        <h3>名前</h3>-->
-<!--        <input class="inputForm" type="text" id="name" name="name" required minlength="1" maxlength="128" size="50">-->
-<!--    </div>-->
-<!--    <div class="inputContainer">-->
-<!--        <h3>金額</h3>-->
-<!--        <input class="inputForm" type="number" id="amount" name="amount" required minlength="1" maxlength="10" size="50">-->
-<!--    </div>-->
-<!--    <div class="inputContainer">-->
-<!--        <h3>カテゴリー</h3>-->
-<!--        <input class="inputForm" type="text" id="category" name="category" required maxlength="128" size="50">-->
-<!--    </div>-->
-<!--    <div class="inputContainer">-->
-<!--        <h3>コメント</h3>-->
-<!--        <input class="inputForm" type="text" id="comments" name="comments" required maxlength="512" size="50">-->
-<!--    </div>-->
-
-<!--    <span th:text="${totalAmount}"></span>円-->
 
 <div class="btnContainer">
     <form th:action="@{/categoryList}" method="post">

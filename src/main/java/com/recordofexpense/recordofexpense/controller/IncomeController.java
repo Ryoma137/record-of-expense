@@ -4,6 +4,7 @@ import com.recordofexpense.recordofexpense.entity.Amount;
 import com.recordofexpense.recordofexpense.repository.AmountRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,11 +23,10 @@ public class IncomeController {
         return StreamSupport.stream(amountRepository.findAll().spliterator(), false).toList();
     }
 
-    @GetMapping("/amount/category")
-    public List<String> getCategory(){
-        return StreamSupport.stream(amountRepository.getCategoryList().spliterator(),false).toList();
+    @GetMapping("/expense")
+    public String getCategory(Model model){
+        List<String> categoryList = StreamSupport.stream(amountRepository.getCategoryList().spliterator(),false).toList();
+        model.addAttribute("categoryLists",categoryList);
+        return "expense";
     }
-
-
-
 }
