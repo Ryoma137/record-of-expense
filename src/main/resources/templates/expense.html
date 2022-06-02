@@ -10,7 +10,7 @@
 </div>
 
 
-<div class="ul-align-center">cd
+<div class="ul-align-center">
     <ul>
         <li><span>名前</span>
             <span><input type="text" class="txt" name="name" required minlength="1" maxlength="50" size="20"/></span></li>
@@ -23,8 +23,10 @@
 <!--                    <option value="medical">Medical Fees</option>-->
 <!--                </select></span>-->
 
-            <!--                <span><input type="text" class="txt" name="category" required minlength="1" maxlength="128" size="50"/></span>-->
-            <span><option th:each="categoryList: ${categoryLists}}"></span>
+                            <span><input type="text" class="txt" name="category" required minlength="1" maxlength="128" size="50"/></span>
+            <th:block th:each="categoryList: ${categoryLists}}">
+                    <p th:text="${categoryList}"></p>
+                </th:block>
 
 
         </li>
