@@ -71,8 +71,7 @@ class AmountServiceTest {
 
         // 各カテゴリーの種類が1回ずつリストで表示される
 
-        //テストが成功するか確認するために一旦expectedの値を6に変更
-        assertEquals(6, actual.size(), "三件のデータが取得される");
+        assertEquals(3, actual.size(), "三件のデータが取得される");
 
         assertEquals(true, actual.contains("Food"), "actualのリストに Foodの文字列が入っている");
         assertEquals(true, actual.contains("Clothes"), "actualのリストに Clothesの文字列が入っている");
