@@ -9,8 +9,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Sql("/test-schema.sql")
@@ -69,13 +68,11 @@ class AmountServiceTest {
 
         List<String> actual = amountService.getCategoryList();
 
-        // 各カテゴリーの種類が1回ずつリストで表示される
-
         assertEquals(3, actual.size(), "三件のデータが取得される");
 
-        assertEquals(true, actual.contains("Food"), "actualのリストに Foodの文字列が入っている");
-        assertEquals(true, actual.contains("Clothes"), "actualのリストに Clothesの文字列が入っている");
-        assertEquals(true, actual.contains("Gadget"), "actualのリストに Gadgetの文字列が入っている");
+        assertTrue(actual.contains("Food"), "actualのリストに Foodの文字列が入っている");
+        assertTrue(actual.contains("Clothes"), "actualのリストに Clothesの文字列が入っている");
+        assertTrue(actual.contains("Gadget"), "actualのリストに Gadgetの文字列が入っている");
 
     }
 }
