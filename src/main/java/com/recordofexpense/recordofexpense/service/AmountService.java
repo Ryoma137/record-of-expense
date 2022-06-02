@@ -23,8 +23,8 @@ public class AmountService {
     public List<String> getCategoryList() {
 
         var originalCategoryList = amountRepository.getCategoryList();
-        Set<String> temp = new LinkedHashSet<String>(originalCategoryList);
-        return new ArrayList<String>(temp);
+        Set<String> eliminateDuplications = new LinkedHashSet<String>(originalCategoryList);
+        return new ArrayList<String>(eliminateDuplications);
     }
 
 }
