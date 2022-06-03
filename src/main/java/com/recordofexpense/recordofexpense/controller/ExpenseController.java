@@ -11,7 +11,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-public class IncomeController {
+public class ExpenseController {
 
     private final AmountService amountService;
 
@@ -21,4 +21,6 @@ public class IncomeController {
         model.addAttribute("categoryLists", categoryList);
         return "expense";
     }
+
+
 }
