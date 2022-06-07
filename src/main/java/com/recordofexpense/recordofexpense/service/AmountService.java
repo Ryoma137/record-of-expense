@@ -36,10 +36,9 @@ public class AmountService {
         return new ArrayList<String>(eliminateDuplications);
     }
 
-    @Transactional
-    public List<Amount> updateExpense() {
-        var updateExpense = amountRepository.updateExpense(Amount addExxpense);
-        return updateExpense;
-    }
 
+    public Amount registerAmount(long id, String name, int price, String category, String comments) {
+
+        return amountRepository.save(registerAmount(id, name, price, category, comments));
+    }
 }
