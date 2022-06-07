@@ -15,26 +15,26 @@
         <li>
             <span>名前</span>
             <span>
-                <input type="text" class="txt" name="name" required minlength="1" maxlength="50" size="20"/>
+                <input type="text" th:field="*{name}" class="txt" name="name" required minlength="1" maxlength="50" size="20"/>
             </span>
         </li>
         <li>
             <span>金額</span>
             <span>
-                <input type="number" class="txt" name="amount" required size="50"/>
+                <input type="number" th:field="*{price}" class="txt" name="amount" required size="50"/>
             </span>
         </li>
         <li>
             <span>カテゴリー</span>
             <select>
                 <option th:each="categoryItem : ${categoryList}" th:value="${categoryItem}"
-                        th:text="${categoryItem}"></option>
+                        th:text="${categoryItem}" th:field="*{category}"></option>
             </select>
         </li>
         <li>
             <span>コメント</span>
             <span>
-                <textarea name="comments" class="tarea" cols="50" rows="5"></textarea>
+                <textarea name="comments" th:field="*{comments}" class="tarea" cols="50" rows="5"></textarea>
             </span>
         </li>
     </ul>
@@ -45,7 +45,7 @@
     <form th:action="@{/categoryList}" method="post">
         <button class="addCategoriesBtn btn-color-radius">カテゴリー追加</button>
     </form>
-    <button class="calculateBtn btn-color-radius">計算</button>
+    <button type="submit" class="calculateBtn btn-color-radius">登録</button>
 </div>
 
 </body>
