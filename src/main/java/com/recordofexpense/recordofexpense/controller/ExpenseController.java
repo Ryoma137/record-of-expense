@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class ExpenseController {
     }
 
     @PostMapping("/expense")
-    public String registerExpense(Model model) {
+    public String registerExpense(@ModelAttribute("registerExpense") Model model) {
 
         Amount registerExpense = amountService.registerAmount();
         model.addAttribute("registerExpense", registerExpense);
