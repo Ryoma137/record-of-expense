@@ -37,8 +37,7 @@ public class AmountService {
     }
 
 
-    public Amount registerAmount(long id, String name, int price, String category, String comments) {
-
-        return amountRepository.save(registerAmount(id, name, price, category, comments));
+    public Amount registerAmount() {
+        return amountRepository.save(amountRepository.registerAmount());
     }
 }
