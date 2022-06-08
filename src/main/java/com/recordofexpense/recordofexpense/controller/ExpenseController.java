@@ -18,7 +18,7 @@ public class ExpenseController {
     @GetMapping("/expense")
     public String getCategory(Model model) {
         List<String> categoryList = amountService.getCategoryList();
-        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("categories", categoryList);
         return "expense";
     }
 

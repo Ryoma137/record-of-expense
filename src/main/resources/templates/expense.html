@@ -27,8 +27,8 @@
         <li>
             <span>カテゴリー</span>
             <select>
-                <option th:each="categoryItem : ${categoryList}" th:value="${categoryItem}"
-                        th:text="${categoryItem}"></option>
+                <option th:each="category : ${categories}" th:value="${categoryItem}"
+                        th:text="${category}"></option>
             </select>
         </li>
         <li>
