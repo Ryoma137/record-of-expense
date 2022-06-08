@@ -19,17 +19,16 @@ public class ExpenseController {
     private final AmountService amountService;
 
     @GetMapping("/expense")
-    public String getCategory(Model model) {
+    public String getCategory(@ModelAttribute("registerExpense") Amount amount ,Model model) {
         List<String> categoryList = amountService.getCategoryList();
-        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("categories", categoryList);
         return "expense";
     }
 
     @PostMapping("/expense")
-    public String registerExpense(@ModelAttribute("registerExpense") Model model) {
+    public String registerExpense(@ModelAttribute("registerExpense") Amount amount) {
 
-        Amount registerExpense = amountService.registerAmount();
-        model.addAttribute("registerExpense", registerExpense);
+        amountService.save(amount);
 
         return "redirect:/expense";
     }

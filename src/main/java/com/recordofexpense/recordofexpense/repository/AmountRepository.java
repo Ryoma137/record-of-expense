@@ -19,6 +19,6 @@ public interface AmountRepository extends JpaRepository<Amount, Integer> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Amount(id, name, price,category,comments) VALUES(?,?,?,?,?)", nativeQuery = true)
-    Amount registerAmount();
+    Amount save(Amount amount);
 
 }
