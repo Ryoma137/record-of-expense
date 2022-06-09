@@ -80,11 +80,8 @@ class AmountServiceTest {
     @DisplayName("DBから取得した金額(price)が全て足された金額が表示される")
     void testGetTotalPrice() {
 
-        List<Integer> actual = amountService.getTotalPrice();
-
-        assertEquals(1, actual.size());
-        assertTrue(actual.contains(273160), "価格(price)の合計金額が取得されている");
-
+        int actual = amountService.getTotalPrice();
+        assertEquals(273160,actual,"価格(price)の合計金額が取得されている");
     }
 
 

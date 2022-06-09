@@ -20,11 +20,9 @@ public class ExpenseController {
         List<String> categoryList = amountService.getCategoryList();
         model.addAttribute("categories", categoryList);
 
-        List<Integer> totalPrice = amountService.getTotalPrice();
+        int totalPrice = amountService.getTotalPrice();
         model.addAttribute("totalPrice",totalPrice);
 
         return "expense";
     }
-
-
 }

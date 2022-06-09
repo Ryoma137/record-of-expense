@@ -24,13 +24,11 @@ public class AmountService {
         return new ArrayList<String>(eliminateDuplications);
     }
 
-    public List<Integer> getTotalPrice(){
+    public int getTotalPrice(){
         var originalPrice = amountRepository.getPrice();
         int total = originalPrice.stream().mapToInt(value -> value).sum();
 
-        return Collections.singletonList(total);
-
-
+        return total;
 
     }
 
