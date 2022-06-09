@@ -16,9 +16,13 @@ public class ExpenseController {
     private final AmountService amountService;
 
     @GetMapping("/expense")
-    public String getCategory(Model model) {
+    public String getCategoryAndTotalPrice(Model model) {
         List<String> categoryList = amountService.getCategoryList();
         model.addAttribute("categories", categoryList);
+
+        List<Integer> totalPrice = amountService.getTotalPrice();
+        model.addAttribute("totalPrice",totalPrice);
+
         return "expense";
     }
 
