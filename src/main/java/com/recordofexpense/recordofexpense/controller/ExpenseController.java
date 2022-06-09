@@ -31,6 +31,4 @@ public class ExpenseController {
         amountService.save(amount);
         return "redirect:/expense";
     }
-
-
 }

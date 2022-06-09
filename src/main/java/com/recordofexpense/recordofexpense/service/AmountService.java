@@ -36,9 +36,8 @@ public class AmountService {
         return new ArrayList<String>(eliminateDuplications);
     }
 
-//    public Amount save(Amount amount) {
-//        return amountRepository.save(amount);
-//    }
-    public void save(Amount amount){amountRepository.save(amount);}
+    public void save(Amount amount) {
+        amountRepository.save(amount);
+    }
 
 }

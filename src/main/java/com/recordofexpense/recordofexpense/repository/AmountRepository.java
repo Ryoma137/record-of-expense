@@ -16,9 +16,4 @@ public interface AmountRepository extends JpaRepository<Amount, Integer> {
     @Query("SELECT category FROM Amount")
     List<String> getCategoryList();
 
-//    @Modifying
-//    @Transactional
-//    @Query(value = "INSERT INTO Amount(id, name, price,category,comments) VALUES(?,?,?,?,?)", nativeQuery = true)
-//    Amount save(Amount amount);
-
 }
