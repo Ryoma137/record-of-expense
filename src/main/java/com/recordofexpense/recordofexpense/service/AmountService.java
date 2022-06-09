@@ -5,10 +5,7 @@ import com.recordofexpense.recordofexpense.repository.AmountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class AmountService {
@@ -26,5 +23,16 @@ public class AmountService {
         Set<String> eliminateDuplications = new LinkedHashSet<String>(originalCategoryList);
         return new ArrayList<String>(eliminateDuplications);
     }
+
+    public List<Integer> getTotalPrice(){
+        var originalPrice = amountRepository.getPrice();
+        int total = originalPrice.stream().mapToInt(value -> value).sum();
+
+        return Collections.singletonList(total);
+
+
+
+    }
+
 
 }

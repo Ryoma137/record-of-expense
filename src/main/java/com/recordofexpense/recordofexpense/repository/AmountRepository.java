@@ -12,4 +12,9 @@ public interface AmountRepository extends JpaRepository<Amount,Integer> {
 
     @Query("SELECT category FROM Amount")
     List<String> getCategoryList();
+
+    @Query("SELECT price FROM Amount")
+    List<Integer> getPrice();
+
+
 }
