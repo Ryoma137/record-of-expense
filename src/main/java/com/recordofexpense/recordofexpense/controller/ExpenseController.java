@@ -28,7 +28,7 @@ public class ExpenseController {
     @PostMapping("/expense")
     public String registerExpense(@ModelAttribute("registerExpense") Amount amount) {
 
-        amountService.save(amount);
+        amountService.saveAmount(amount);
         return "redirect:/expense";
     }
 }

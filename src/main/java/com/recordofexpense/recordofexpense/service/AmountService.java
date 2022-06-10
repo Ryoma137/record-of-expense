@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -36,7 +35,7 @@ public class AmountService {
         return new ArrayList<String>(eliminateDuplications);
     }
 
-    public void save(Amount amount) {
+    public void saveAmount(Amount amount) {
         amountRepository.save(amount);
     }
 
