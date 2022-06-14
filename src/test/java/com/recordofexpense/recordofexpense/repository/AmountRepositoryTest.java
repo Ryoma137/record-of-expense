@@ -76,6 +76,21 @@ class AmountRepositoryTest {
     @Sql("/test-schema.sql")
     @DisplayName("与えられたデータのキーがDBのテーブル内に存在するデータのキーと重複している時、与えられたデータがDBに追加されないこと")
     void testAddDataWhenDataContainsSameKeyWithGivenData() {
+        var amount = new Amount();
+        amount.setId(1);
+        amount.setName("testName");
+        amount.setPrice(1000);
+        amount.setCategory("testCategory");
+        amount.setComments("testComment");
+
+        var actual = amountRepository.findAll();
+        actual.add(amount);
+
+        assertEquals(amount.getId(), actual.get(0).getId(), "与えられたデータのキーがDBのテーブル内に存在する");
+        assertNotEquals("testName",actual.get(0).getName(),"与えられたデータのキーが重複しているため、名前が更新されていない");
+        assertNotEquals("testCategory",actual.get(0).getCategory(),"与えられたデータのキーが重複しているため、カテゴリーが更新されていない");
+        assertNotEquals("testComment",actual.get(0).getComments(),"与えられたデータのキーが重複しているため、コメントが更新されていない");
+
 
 
 
