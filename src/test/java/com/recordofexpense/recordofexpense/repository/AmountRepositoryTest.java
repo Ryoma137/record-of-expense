@@ -9,7 +9,8 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
 class AmountRepositoryTest {
@@ -22,14 +23,14 @@ class AmountRepositoryTest {
     @DisplayName("IDがNullの時に@IDがNullの時に@GeneratedValueでIDが正しく生成されることでIDが正しく生成されること")
     void testGeneratedValue() {
 
-        Amount amount = new Amount();
+        var amount = new Amount();
         amount.setId(null);
         amount.setName("testName");
         amount.setPrice(1000);
         amount.setCategory("testCategory");
         amount.setComments("testComment");
 
-        Amount amount2 = new Amount();
+        var amount2 = new Amount();
         amount2.setName("testName2");
         amount2.setPrice(1200);
         amount2.setCategory("testCategory2");
@@ -68,6 +69,25 @@ class AmountRepositoryTest {
         assertEquals(amount, actual.get(0), "追加したデータがレコードの1列目に保存されている");
 
     }
+
+    @Test
+    @Sql("/test-schema.sql")
+    @DisplayName("DBのテーブル内にデータが存在する時、ID列の最後尾に与えられたIDの数値+1の値でIDが生成され、データがDB追加されていること")
+    void testAddDataWhenDataExistInDB() {
+
+        var amount = new Amount();
+        amount.setName("testName");
+        amount.setPrice(1000);
+        amount.setCategory("testCategory");
+        amount.setComments("testComment");
+
+        amountRepository.save(amount);
+        List<Amount> actual = amountRepository.findAll();
+
+        assertEquals(7, actual.size());
+
+    }
+
 
     @Test
     @Sql("/test-schema.sql")
