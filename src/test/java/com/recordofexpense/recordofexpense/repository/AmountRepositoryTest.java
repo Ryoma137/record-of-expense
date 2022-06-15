@@ -120,11 +120,11 @@ class AmountRepositoryTest {
         assertEquals("Food", actual.get(5).getCategory());
         assertEquals("gluten free", actual.get(5).getComments());
 
-        assertEquals(7, actual.get(6).getId(), "データの最後尾にデータが追加されている");
-        assertEquals("testName", actual.get(6).getName(), "データの最後尾にデータが追加されている");
-        assertEquals(1000, actual.get(6).getPrice());
-        assertEquals("testCategory", actual.get(6).getCategory());
-        assertEquals("testComment", actual.get(6).getComments());
+        assertEquals(7, actual.get(6).getId(), "DBのID列の最後尾columnにGeneratedValueで自動生成されたIDが追加されている");
+        assertEquals("testName", actual.get(6).getName(), "追加したデータの名前がDBのID列の最後尾columnに追加されている");
+        assertEquals(1000, actual.get(6).getPrice(), "追加したデータの価格がDBのID列の最後尾columnに追加されている");
+        assertEquals("testCategory", actual.get(6).getCategory(), "追加したデータのカテゴリーがDBのID列の最後尾columnに追加されている");
+        assertEquals("testComment", actual.get(6).getComments(), "追加したデータのコメントがDBのID列の最後尾columnに追加されている");
 
         assertEquals(7, actual.size(), "既存のDBに保存されているデータ数に今回追加したデータ数を合わせたデータ数が取得される");
 
@@ -135,7 +135,6 @@ class AmountRepositoryTest {
     @Sql("/test-schema.sql")
     @DisplayName("与えられたデータのキーが一致するデータがDBに存在する時、与えられたデータでDBが更新されること")
     void testUpdateWhenDataContainsSameKeyWithGivenData() {
-
 
 
     }
