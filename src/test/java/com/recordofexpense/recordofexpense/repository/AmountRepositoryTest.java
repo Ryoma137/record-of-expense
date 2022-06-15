@@ -18,7 +18,7 @@ class AmountRepositoryTest {
 
     @Test
     @Sql("/test-schema-not-data-exist.sql")
-    @DisplayName("IDがNullの時に@IDがNullの時に@GeneratedValueでIDが正しく生成されることでIDが正しく生成されること")
+    @DisplayName("IDがNullの時に@IDがNullの時に@GeneratedValueでIDが正しく生成されること")
     void testGeneratedValue() {
 
         var amount = new Amount();
@@ -44,8 +44,8 @@ class AmountRepositoryTest {
 
         assertEquals(2, actual.size(), "追加したデータのみがDBに保存されている");
 
-        assertEquals(1, actual.get(0).getId(), "IDをnullでinstanceにセットしたがDBにデータ保存時にID列を使用した主キー値(1)に変更されている");
-        assertEquals(2, actual.get(1).getId(), "idをinstanceにセットしてないが、DBにデータ保存時にDBのID列を使用した主キー値(2)でIDが生成されている");
+        assertNotNull(actual.get(0).getId(), "DBに保存されたIDがnullではなく、IDが生成されている");
+        assertNotNull(actual.get(1).getId(), "DBに保存されたIDがnullではなく、IDが生成されている");
 
     }
 
@@ -155,7 +155,7 @@ class AmountRepositoryTest {
 
     @Test
     @Sql("/test-schema.sql")
-    @DisplayName("与えられたデータのキーが一致するデータがDBに存在する時、与えられたデータでDBが更新されること")
+    @DisplayName("与えられたデータのキーと一致するデータがDBに存在する時、与えられたデータでDBが更新されること")
     void testUpdateWhenDataContainsSameKeyWithGivenData() {
 
         List<Amount> originalValues = amountRepository.findAll();
