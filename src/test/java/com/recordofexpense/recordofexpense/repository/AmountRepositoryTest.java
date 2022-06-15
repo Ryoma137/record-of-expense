@@ -136,7 +136,25 @@ class AmountRepositoryTest {
     @DisplayName("与えられたデータのキーが一致するデータがDBに存在する時、与えられたデータでDBが更新されること")
     void testUpdateWhenDataContainsSameKeyWithGivenData() {
 
+        List<Amount> originalValues = amountRepository.findAll();
 
+        assertEquals(1, originalValues.get(0).getId());
+        assertEquals("Sandwich", originalValues.get(0).getName());
+        assertEquals(450, originalValues.get(0).getPrice());
+        assertEquals("Food", originalValues.get(0).getCategory());
+        assertEquals("What a scrumptious sandwich", originalValues.get(0).getComments());
+
+        var amount = new Amount();
+        amount.setId(1L);
+        amount.setName("testName");
+        amount.setPrice(1000);
+        amount.setCategory("testCategory");
+        amount.setComments("testComment");
+
+        amountRepository.save(amount);
+        List<Amount> updatedValues = amountRepository.findAll();
+
+        assertEquals(amount, updatedValues.get(0), "与えられたデータのキーが一致するデータがDBに存在する時、与えられたデータでDBが更新されているか確認");
     }
 
     @Test
