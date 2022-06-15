@@ -72,7 +72,7 @@ class AmountRepositoryTest {
 
     @Test
     @Sql("/test-schema.sql")
-    @DisplayName("DBのテーブル内にデータが存在する時、ID列の最後尾に与えられたIDの数値+1の値でIDが生成され、データがDB追加されていること")
+    @DisplayName("DBのテーブル内にデータが存在する時、ID列の最後尾にデータがDB追加されていること")
     void testAddDataWhenDataExistInDB() {
 
         var amount = new Amount();
@@ -84,7 +84,49 @@ class AmountRepositoryTest {
         amountRepository.save(amount);
         List<Amount> actual = amountRepository.findAll();
 
-        assertEquals(7, actual.size());
+        assertEquals(1, actual.get(0).getId());
+        assertEquals("Sandwich", actual.get(0).getName());
+        assertEquals(450, actual.get(0).getPrice());
+        assertEquals("Food", actual.get(0).getCategory());
+        assertEquals("What a scrumptious sandwich", actual.get(0).getComments());
+
+        assertEquals(2, actual.get(1).getId());
+        assertEquals("White T-Shirt", actual.get(1).getName());
+        assertEquals(980, actual.get(1).getPrice());
+        assertEquals("Clothes", actual.get(1).getCategory());
+        assertEquals("Uniqlo T-Shirt", actual.get(1).getComments());
+
+        assertEquals(3, actual.get(2).getId());
+        assertEquals("iPhone", actual.get(2).getName());
+        assertEquals(130000, actual.get(2).getPrice());
+        assertEquals("Gadget", actual.get(2).getCategory());
+        assertEquals("iPhone 13 Pro", actual.get(2).getComments());
+
+        assertEquals(4, actual.get(3).getId());
+        assertEquals("Green Curry", actual.get(3).getName());
+        assertEquals(880, actual.get(3).getPrice());
+        assertEquals("Food", actual.get(3).getCategory());
+        assertEquals("Thai Cuisine", actual.get(3).getComments());
+
+        assertEquals(5, actual.get(4).getId());
+        assertEquals("iPad", actual.get(4).getName());
+        assertEquals(140000, actual.get(4).getPrice());
+        assertEquals("Gadget", actual.get(4).getCategory());
+        assertEquals("iPad Pro", actual.get(4).getComments());
+
+        assertEquals(6, actual.get(5).getId());
+        assertEquals("Crispy Pizza", actual.get(5).getName());
+        assertEquals(850, actual.get(5).getPrice());
+        assertEquals("Food", actual.get(5).getCategory());
+        assertEquals("gluten free", actual.get(5).getComments());
+
+        assertEquals(7, actual.get(6).getId(), "データの最後尾にデータが追加されている");
+        assertEquals("testName", actual.get(6).getName(), "データの最後尾にデータが追加されている");
+        assertEquals(1000, actual.get(6).getPrice());
+        assertEquals("testCategory", actual.get(6).getCategory());
+        assertEquals("testComment", actual.get(6).getComments());
+
+        assertEquals(7, actual.size(), "既存のDBに保存されているデータ数に今回追加したデータ数を合わせたデータ数が取得される");
 
     }
 
@@ -93,6 +135,29 @@ class AmountRepositoryTest {
     @Sql("/test-schema.sql")
     @DisplayName("与えられたデータのキーが一致するデータがDBに存在する時、与えられたデータでDBが更新されること")
     void testUpdateWhenDataContainsSameKeyWithGivenData() {
+
+        List<Amount> actual = amountRepository.findAll();
+
+        assertEquals(1, actual.get(0).getId());
+        assertEquals("Sandwich", actual.get(0).getName());
+        assertEquals(450, actual.get(0).getPrice());
+        assertEquals("Food", actual.get(0).getCategory());
+        assertEquals("What a scrumptious sandwich", actual.get(0).getComments());
+
+
+        var amount = new Amount();
+        amount.setId(1L);
+        amount.setName("testName");
+        amount.setPrice(1000);
+        amount.setCategory("testCategory");
+        amount.setComments("testComment");
+
+        amountRepository.save(amount);
+        assertEquals(1, actual.get(0).getId());
+        assertEquals("testName", actual.get(0).getName());
+        assertEquals(1000, actual.get(0).getPrice());
+        assertEquals("testCategory", actual.get(0).getCategory());
+        assertEquals("testComment", actual.get(0).getComments());
 
     }
 
