@@ -9,7 +9,8 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @SpringBootTest
 class AmountRepositoryTest {
@@ -251,56 +252,4 @@ class AmountRepositoryTest {
 
         assertEquals(amount, updatedValues.get(6), "与えられたデータのキーが一致するデータがDBに存在しない時、与えられたデータでDBの更新ではなく、与えられたデータのキーで新たなデータが登録されているかの確認");
     }
-
-    //    @Test
-//    @Sql("/test-schema.sql")
-//    @DisplayName("与えられたデータのキーがDBのテーブル内に存在するデータのキーと重複していない時、与えられたデータがDBに追加されていること")
-//    void testAddDataWhenDataNotContainsSameKeyWithGivenData() {
-//
-//        var amount = new Amount();
-//        //  amount.setId(1);
-//        amount.setName("testName");
-//        amount.setPrice(1000);
-//        amount.setCategory("testCategory");
-//        amount.setComments("testComment");
-//
-//        amountRepository.save(amount);
-//
-//        var actual = amountRepository.findAll();
-//
-//
-//        assertEquals(amount.getId(), actual.get(0).getId(), "追加するデータとレコードの1列目に保存されているデータが重複していない");
-//        assertNotEquals(amount, actual.get(1), "追加するデータとレコードの2列目に保存されているデータが重複していない");
-//        assertNotEquals(amount, actual.get(2), "追加するデータとレコードの3列目に保存されているデータが重複していない");
-//        assertNotEquals(amount, actual.get(3), "追加するデータとレコードの4列目に保存されているデータが重複していない");
-//        assertNotEquals(amount, actual.get(4), "追加するデータとレコードの5列目に保存されているデータが重複していない");
-//        assertNotEquals(amount, actual.get(5), "追加するデータとレコードの6列目に保存されているデータが重複していない");
-//        assertEquals(amount, actual.get(6), "与えられたデータがDBに追加されている");
-//        assertEquals(amount.getName(), actual.get(7).getName(), "与えられたデータがDBに追加されている");
-//
-//        assertEquals(7, actual.size(), "test-schema.sqlに書いてあるレコード数と追加したレコード数の合計数と同じレコード数がDBに登録されている");
-//    }
-
-//    @Test
-//    @Sql("/test-schema.sql")
-//    @DisplayName("与えられたデータのキーがDBのテーブル内に存在するデータのキーと重複している時、与えられたデータがDBに追加されないこと")
-//    void testAddDataWhenDataContainsSameKeyWithGivenData() {
-//        var amount = new Amount();
-//        amount.setId(1);
-//        amount.setName("testName");
-//        amount.setPrice(1000);
-//        amount.setCategory("testCategory");
-//        amount.setComments("testComment");
-//
-//        var actual = amountRepository.findAll();
-//        actual.add(amount);
-//
-//        assertEquals(amount.getId(), actual.get(0).getId(), "与えられたデータのキーがDBのテーブル内に存在する");
-//        assertNotEquals("testName", actual.get(0).getName(), "与えられたデータのキーが重複しているため、名前が更新されていない");
-//        assertNotEquals("testCategory", actual.get(0).getCategory(), "与えられたデータのキーが重複しているため、カテゴリーが更新されていない");
-//        assertNotEquals("testComment", actual.get(0).getComments(), "与えられたデータのキーが重複しているため、コメントが更新されていない");
-//
-//
-//    }
-
 }
