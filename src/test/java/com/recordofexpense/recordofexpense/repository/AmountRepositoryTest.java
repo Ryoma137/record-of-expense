@@ -1,16 +1,14 @@
 package com.recordofexpense.recordofexpense.repository;
 
 import com.recordofexpense.recordofexpense.entity.Amount;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class AmountRepositoryTest {
@@ -50,6 +48,30 @@ class AmountRepositoryTest {
         assertEquals(2, actual.get(1).getId(), "idをinstanceにセットしてないが、DBにデータ保存時にDBのID列を使用した主キー値(2)でIDが生成されている");
 
     }
+
+    @Test
+    @Sql("/test-schema-not-data-exist.sql")
+    @DisplayName("@GeneratedValueで生成したIDが付与されているデータが削除できること")
+    void testDeletableGeneratedValue() {
+
+        var amount = new Amount();
+        amount.setName("testName");
+        amount.setPrice(1000);
+        amount.setCategory("testCategory");
+        amount.setComments("testComment");
+
+        amountRepository.save(amount);
+        var actual = amountRepository.findAll();
+
+        assertEquals(1, actual.size(), "追加したデータのみがDBに保存されている");
+        assertEquals(amount, actual.get(0), "与えられたデータがDBに追加されている");
+
+        amountRepository.deleteAll();
+        var deletedValue = amountRepository.findAll();
+        assertTrue(deletedValue.isEmpty(), "　先ほど与えたデータが削除されている");
+
+    }
+
 
     @Test
     @Sql("/test-schema-not-data-exist.sql")
