@@ -72,7 +72,7 @@ class AmountRepositoryTest {
 
     @Test
     @Sql("/test-schema.sql")
-    @DisplayName("DBのテーブル内にデータが存在する時、ID列の最後尾にデータがDB追加されていること")
+    @DisplayName("DBのテーブル内にデータが存在する時、DBのID列の最後尾にデータが追加されていること")
     void testAddDataWhenDataExistInDB() {
 
         var amount = new Amount();
