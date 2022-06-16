@@ -98,16 +98,16 @@ class AmountRepositoryTest {
     @DisplayName("DBのテーブル内にデータが存在する時、DBのID列の最後尾にデータが追加されていること")
     void testAddDataWhenDataExistInDB() {
 
-        List<Amount> originalValue = amountRepository.findAll();
+        List<Amount> originalRecords = amountRepository.findAll();
 
-        assertNotNull(originalValue.get(0).getId(), "既にDBのID列1列目にデータが保存されているかの確認");
-        assertNotNull(originalValue.get(1).getId(), "既にDBのID列2列目にデータが保存されているかの確認");
-        assertNotNull(originalValue.get(2).getId(), "既にDBのID列3列目にデータが保存されているかの確認");
-        assertNotNull(originalValue.get(3).getId(), "既にDBのID列4列目にデータが保存されているかの確認");
-        assertNotNull(originalValue.get(4).getId(), "既にDBのID列5列目にデータが保存されているかの確認");
-        assertNotNull(originalValue.get(5).getId(), "既にDBのID列6列目にデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(0).getId(), "既にDBのID列1列目にデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(1).getId(), "既にDBのID列2列目にデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(2).getId(), "既にDBのID列3列目にデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(3).getId(), "既にDBのID列4列目にデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(4).getId(), "既にDBのID列5列目にデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(5).getId(), "既にDBのID列6列目にデータが保存されているかの確認");
 
-        assertEquals(6, originalValue.size(), "既存のDBに保存されているデータ数の確認");
+        assertEquals(6, originalRecords.size(), "既存のDBに保存されているデータ数の確認");
 
         var amount = new Amount();
         amount.setName("testName");
@@ -128,13 +128,13 @@ class AmountRepositoryTest {
     @DisplayName("与えられたデータのキーと一致するデータがDBに存在する時、与えられたデータでDBが更新されること")
     void testUpdateWhenDataContainsSameKeyWithGivenData() {
 
-        List<Amount> originalValues = amountRepository.findAll();
+        List<Amount> originalRecords = amountRepository.findAll();
 
-        assertEquals(1, originalValues.get(0).getId());
-        assertEquals("Sandwich", originalValues.get(0).getName());
-        assertEquals(450, originalValues.get(0).getPrice());
-        assertEquals("Food", originalValues.get(0).getCategory());
-        assertEquals("What a scrumptious sandwich", originalValues.get(0).getComments());
+        assertEquals(1, originalRecords.get(0).getId());
+        assertEquals("Sandwich", originalRecords.get(0).getName());
+        assertEquals(450, originalRecords.get(0).getPrice());
+        assertEquals("Food", originalRecords.get(0).getCategory());
+        assertEquals("What a scrumptious sandwich", originalRecords.get(0).getComments());
 
         var amount = new Amount();
         amount.setId(1L);
@@ -144,9 +144,9 @@ class AmountRepositoryTest {
         amount.setComments("testComment");
 
         amountRepository.save(amount);
-        List<Amount> updatedValues = amountRepository.findAll();
+        List<Amount> updatedRecords = amountRepository.findAll();
 
-        assertEquals(amount, updatedValues.get(0), "与えられたデータのキーが一致するデータがDBに存在する時、与えられたデータでDBが更新されているか確認");
+        assertEquals(amount, updatedRecords.get(0), "与えられたデータのキーが一致するデータがDBに存在する時、与えられたデータでDBが更新されているか確認");
     }
 
     @Test
@@ -155,16 +155,16 @@ class AmountRepositoryTest {
     void testUpdateWhenDataNotContainsSameKeyWithGivenData() {
 
 
-        List<Amount> originalValues = amountRepository.findAll();
+        List<Amount> originalRecords = amountRepository.findAll();
 
-        assertEquals(6, originalValues.size(), "DBに保存されているデータ数を確認");
+        assertEquals(6, originalRecords.size(), "DBに保存されているデータ数を確認");
 
-        assertNotNull(originalValues.get(0).getId(), "DBのID列1列目に保存されているデータが保存されているかの確認");
-        assertNotNull(originalValues.get(1).getId(), "DBのID列2列目に保存されているデータが保存されているかの確認");
-        assertNotNull(originalValues.get(2).getId(), "DBのID列3列目に保存されているデータが保存されているかの確認");
-        assertNotNull(originalValues.get(3).getId(), "DBのID列4列目に保存されているデータが保存されているかの確認");
-        assertNotNull(originalValues.get(4).getId(), "DBのID列5列目に保存されているデータが保存されているかの確認");
-        assertNotNull(originalValues.get(5).getId(), "DBのID列6列目に保存されているデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(0).getId(), "DBのID列1列目に保存されているデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(1).getId(), "DBのID列2列目に保存されているデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(2).getId(), "DBのID列3列目に保存されているデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(3).getId(), "DBのID列4列目に保存されているデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(4).getId(), "DBのID列5列目に保存されているデータが保存されているかの確認");
+        assertNotNull(originalRecords.get(5).getId(), "DBのID列6列目に保存されているデータが保存されているかの確認");
 
         var amount = new Amount();
         amount.setId(7L);
@@ -174,10 +174,10 @@ class AmountRepositoryTest {
         amount.setComments("testComment");
 
         amountRepository.save(amount);
-        List<Amount> updatedValues = amountRepository.findAll();
+        List<Amount> updatedRecords = amountRepository.findAll();
 
-        assertNotNull(updatedValues.get(6), "与えられたデータのキーが一致するデータがDBに存在しない時、与えられたデータでDBの更新ではなく、与えられたデータのキーで新たなデータが登録されているかの確認");
-        assertEquals(7, updatedValues.size(), "データが与えられた後のDBに保存されているデータ数を確認");
+        assertNotNull(updatedRecords.get(6), "与えられたデータのキーが一致するデータがDBに存在しない時、与えられたデータでDBの更新ではなく、与えられたデータのキーで新たなデータが登録されているかの確認");
+        assertEquals(7, updatedRecords.size(), "データが与えられた後のDBに保存されているデータ数を確認");
 
     }
 }
