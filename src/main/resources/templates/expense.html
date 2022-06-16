@@ -28,15 +28,15 @@
             </li>
             <li>
                 <span>カテゴリー</span>
-                <select>
+                <select th:field="*{category}">
                     <option th:each="category : ${categories}" th:value="${category}"
-                            th:text="${category}"th:field="*{category}"></option>
+                            th:text="${category}" ></option>
                 </select>
             </li>
             <li>
                 <span>コメント</span>
                 <span>
-                <textarea name="comments" th:text="*{comments}" class="tarea" cols="50" rows="5"></textarea>
+                <textarea name="comments" th:field="*{comments}" class="tarea" cols="50" rows="5"></textarea>
             </span>
             </li>
         </ul>
