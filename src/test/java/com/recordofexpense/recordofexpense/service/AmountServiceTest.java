@@ -98,4 +98,27 @@ class AmountServiceTest {
         assertNotNull(updatedRecords.get(6), "与えられたデータのid値がnullの場合レコードが追加される");
     }
 
+    @Test
+    @DisplayName("与えられたデータのIDがnullではない時、DBのidentity列を利用したIDに変更されてレコードが追加される")
+    void testRegisterAmountWithNotNullId() {
+
+        var originalRecords = amountService.getFindAll();
+        assertEquals(6, originalRecords.size(), "既存のDBに保存されているデータ数を確認する");
+
+        var amount = new Amount();
+        amount.setId(7L);
+        amount.setName("testName");
+        amount.setPrice(1000);
+        amount.setCategory("testCategory");
+        amount.setComments("testComment");
+
+        amountService.registerAmount(amount);
+
+        var updatedRecords = amountService.getFindAll();
+
+        assertNotNull(updatedRecords.get(6), "与えられたIDがnullでなくてもレコードが追加されているかを確認");
+        assertEquals(7, updatedRecords.get(6).getId(), "与えられたIDが");
+        assertEquals(7, updatedRecords.size(), "レコード追加後のデータ数の確認");
+        assertEquals(7, updatedRecords.get(6).getId(), "DBのidentity列を利用したIDに変更されているか確認");
+    }
 }
