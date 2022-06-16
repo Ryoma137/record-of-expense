@@ -75,4 +75,27 @@ class AmountServiceTest {
         assertTrue(actual.contains("Gadget"), "actualのリストに Gadgetの文字列が入っている");
 
     }
+
+    @Test
+    @DisplayName("与えられたデータのIDがnullになっている時、レコードが追加される")
+    void testRegisterAmountWithNullId() {
+
+        var originalRecords = amountService.getFindAll();
+        assertEquals(6, originalRecords.size(), "既存のDBに保存されているデータ数を確認する");
+
+        var amount = new Amount();
+        amount.setId(null);
+        amount.setName("testName");
+        amount.setPrice(1000);
+        amount.setCategory("testCategory");
+        amount.setComments("testComment");
+
+        amountService.registerAmount(amount);
+
+        var updatedRecords = amountService.getFindAll();
+
+        assertEquals(7, updatedRecords.size(), "レコード追加後のデータ数の確認");
+        assertNotNull(updatedRecords.get(6), "与えられたデータのid値がnullの場合レコードが追加される");
+    }
+
 }
